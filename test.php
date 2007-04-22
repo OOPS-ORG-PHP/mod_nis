@@ -1,5 +1,7 @@
 #!/usr/bin/php
 <?
+# $Id: test.php,v 1.2 2007-04-22 17:41:33 oops Exp $
+
 if ( ! extension_loaded ('nis') )
 	dl ('nis.so');
 
