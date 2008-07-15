@@ -1,4 +1,4 @@
-dnl $Id: config.m4,v 1.1.1.1 2007-04-22 17:39:33 oops Exp $
+dnl $Id: config.m4,v 1.2 2008-07-15 11:39:25 oops Exp $
 dnl config.m4 for extension nis
 
 dnl Comments in this file start with the string 'dnl'.
@@ -21,8 +21,8 @@ if test "$PHP_NIS" != "no"; then
 
 	for i in $SEARCH_PATH
 	do
-		if test -f $i/lib/libnsl.$SHLIB_SUFFIX_NAME -o -f $i/lib/libnsl.a ; then
-			NIS_LIB_DIR=$i/lib
+		if test -f $i/$PHP_LIBDIR/libnsl.$SHLIB_SUFFIX_NAME -o -f $i/$PHP_LIBDIR/libnsl.a ; then
+			NIS_LIB_DIR=$i/$PHP_LIBDIR
 			break
 		fi
 	done
