@@ -1,5 +1,5 @@
 #!/bin/sh
-# $Id: init.sh,v 1.2 2007-04-22 17:41:33 oops Exp $
+# $Id$
 
 if [ -f Makefile ]; then
 	make distclean
