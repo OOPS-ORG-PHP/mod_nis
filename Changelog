@@ -7,7 +7,7 @@ $Id$
 
 Sun Apr 22 2007
 by JoungKyun Kim <http://oops.org>
-	- support 64bit library check
+	- support self 64bit library check
 
 * 0.0.1
 --------------------------------------------------------------------------------
