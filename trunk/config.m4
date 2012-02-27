@@ -19,10 +19,13 @@ if test "$PHP_NIS" != "no"; then
 
 	SEARCH_PATH="/usr /usr/local $PHP_NIS $LIBSEARCH"
 
+	parch=`uname -m`
+	test "$parch" = "x86_64" && NIS_LIBDIR="lib64" || NIS_LIBDIR="lib"
+
 	for i in $SEARCH_PATH
 	do
-		if test -f $i/$PHP_LIBDIR/libnsl.$SHLIB_SUFFIX_NAME -o -f $i/$PHP_LIBDIR/libnsl.a ; then
-			NIS_LIB_DIR=$i/$PHP_LIBDIR
+		if test -f $i/$NIS_LIBDIR/libnsl.$SHLIB_SUFFIX_NAME -o -f $i/$NIS_LIBDIR/libnsl.a ; then
+			NIS_LIB_DIR=$i/$NIS_LIBDIR
 			break
 		fi
 	done
