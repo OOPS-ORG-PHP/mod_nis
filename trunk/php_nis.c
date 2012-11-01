@@ -53,7 +53,7 @@ char niserr[1024] = { 0, };
  *
  * Every user visible function must have an entry in nis_functions[].
  */
-function_entry nis_functions[] = {
+const zend_function_entry nis_functions[] = {
 	PHP_FE(nis_version,			NULL)
 	PHP_FE(nis_auth,			NULL)
 	PHP_FE(nis_error,			NULL)
