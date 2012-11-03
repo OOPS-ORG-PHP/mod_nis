@@ -61,9 +61,9 @@ ZEND_END_ARG_INFO()
  * Every user visible function must have an entry in nis_functions[].
  */
 const zend_function_entry nis_functions[] = {
-	PHP_FE(nis_version,			NULL)
-	PHP_FE(nis_auth,			NULL)
-	PHP_FE(nis_error,			NULL)
+	PHP_FE(nis_version, NULL)
+	PHP_FE(nis_auth,    arginfo_nis_auth)
+	PHP_FE(nis_error,   NULL)
 	{NULL, NULL, NULL}
 };
 /* }}} */
