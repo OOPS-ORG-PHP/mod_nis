@@ -4,7 +4,11 @@ $Id$
 
 * 0.0.2
 --------------------------------------------------------------------------------
-Sun Nov  2 2012
+Sun Nov  4 2012
+by JoungKyun Kim <http://oops.org>
+	- fixed deprecated zend_get_parameters_ex
+
+Fri Nov  2 2012
 by JoungKyun Kim <http://oops.org>
 	- support PHP 5.4
 
