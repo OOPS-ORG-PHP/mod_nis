@@ -130,17 +130,22 @@ PHP_FUNCTION(nis_auth)
 	char *nispass;
 	char *crypts;
 
-	rqEntry = (nisRqEntry *) emalloc (sizeof (nisRqEntry) + 1);
-	memset (rqEntry->domain, 0, MAXSTRING);
-	memset (rqEntry->map, 0, MAXUSERLEN);
-
 	if ( zend_parse_parameters (ZEND_NUM_ARGS () TSRMLS_CC, "ss|ss", &user, &user_len, &pass, &pass_len, &domain, &domain_len, &map, &map_len) == FAILURE ) {
 		efree (rqEntry);
 		return;
 	}
 
+	if ( ! user_len ) {
+		php_error (E_WARNING, "1st argument is empty or missing.");
+		RETURN_FALSE;
+	}
+
+	rqEntry = (nisRqEntry *) emalloc (sizeof (nisRqEntry) + 1);
+	memset (rqEntry->domain, 0, MAXSTRING);
+	memset (rqEntry->map, 0, MAXUSERLEN);
+
 	cstrcpy (rqEntry->user, user, MAXUSERLEN);
-	cstrcpy (rqEntry->passwd, pass, MAXUSERLEN);
+	cstrcpy (rqEntry->passwd, pass_len ? pass : "", MAXUSERLEN);
 
 	if ( domain_len )
 		cstrcpy (rqEntry->domain, domain, MAXSTRING);
