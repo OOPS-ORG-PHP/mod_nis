@@ -70,7 +70,7 @@ ZEND_END_MODULE_GLOBALS(nis)
 #define NIS_G(v) (nis_globals.v)
 #endif
 
-#define BUILDNO "0.0.1"
+#define BUILDNO "0.0.2"
 
 #define phpext_nis_ptr nis_module_ptr
 
