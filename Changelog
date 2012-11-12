@@ -1,24 +1,10 @@
 PHP NIS Extension Changelog
 
-$Id$
-
-* 0.0.2
---------------------------------------------------------------------------------
-Sun Nov  4 2012
-by JoungKyun Kim <http://oops.org>
-	- fixed deprecated zend_get_parameters_ex
-
-Fri Nov  2 2012
-by JoungKyun Kim <http://oops.org>
-	- support PHP 5.4
-
-Sun Apr 22 2007
-by JoungKyun Kim <http://oops.org>
-	- support self 64bit library check
-
+$Id: Changelog,v 1.2 2007-04-22 17:41:33 oops Exp $
 
 * 0.0.1
 --------------------------------------------------------------------------------
+
 Sun Apr 22 2007
 by JoungKyun Kim <http://oops.org>
 	- first build

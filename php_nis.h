@@ -15,7 +15,7 @@
   | Author: JoungKyun.Kim <http://www.oops.org>                          |
   +----------------------------------------------------------------------+
 
-  $Id$
+  $Id: php_nis.h,v 1.1.1.1 2007-04-22 17:39:33 oops Exp $
 */
 
 #ifndef PHP_NIS_H

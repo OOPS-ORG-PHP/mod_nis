@@ -15,7 +15,7 @@
   | Author: JoungKyun.Kim <http://oops.org>                              |
   +----------------------------------------------------------------------+
 
-  $Id$
+  $Id: php_nis.c,v 1.1.1.1 2007-04-22 17:39:33 oops Exp $
 */
 
 /*
@@ -49,21 +49,14 @@ ZEND_DECLARE_MODULE_GLOBALS(nis)
 static int le_nis;
 char niserr[1024] = { 0, };
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_nis_auth, 0, 0, 2)
-	ZEND_ARG_INFO(0, user)
-	ZEND_ARG_INFO(0, pass)
-	ZEND_ARG_INFO(0, domain)
-	ZEND_ARG_INFO(0, map)
-ZEND_END_ARG_INFO()
-
 /* {{{ nis_functions[]
  *
  * Every user visible function must have an entry in nis_functions[].
  */
-const zend_function_entry nis_functions[] = {
-	PHP_FE(nis_version, NULL)
-	PHP_FE(nis_auth,    arginfo_nis_auth)
-	PHP_FE(nis_error,   NULL)
+function_entry nis_functions[] = {
+	PHP_FE(nis_version,			NULL)
+	PHP_FE(nis_auth,			NULL)
+	PHP_FE(nis_error,			NULL)
 	{NULL, NULL, NULL}
 };
 /* }}} */
@@ -117,16 +110,9 @@ PHP_FUNCTION(nis_version)
  *  return SUCCESS or FAILURE */
 PHP_FUNCTION(nis_auth)
 {
-	char * user = NULL;
-	int    user_len;
-	char * pass = NULL;
-	int    pass_len;
-	char * domain = NULL;
-	int    domain_len;
-	char * map = NULL;
-	int    map_len;
-
+	zval **user, **pass, **domain, **map, **z_debug;
 	nisRqEntry *rqEntry;
+	char *optstr;
 	char *nispass;
 	char *crypts;
 
@@ -134,19 +120,69 @@ PHP_FUNCTION(nis_auth)
 	memset (rqEntry->domain, 0, MAXSTRING);
 	memset (rqEntry->map, 0, MAXUSERLEN);
 
-	if ( zend_parse_parameters (ZEND_NUM_ARGS () TSRMLS_CC, "ss|ss", &user, &user_len, &pass, &pass_len, &domain, &domain_len, &map, &map_len) == FAILURE ) {
-		efree (rqEntry);
-		return;
+	switch (ZEND_NUM_ARGS ()) {
+		/*
+		case 5:
+			if ( zend_get_parameters_ex(5, &user, &pass, &domain, &map, &z_debug) == FAILURE ) {
+				efree (rqEntry);
+				WRONG_PARAM_COUNT;
+			}
+
+			convert_to_long_ex (z_debug);
+			le_nis = Z_LVAL_PP(z_debug);
+
+			convert_to_string_ex (domain);
+			optstr = Z_STRVAL_PP (domain);
+			cstrcpy (rqEntry->domain, optstr, MAXSTRING);
+
+			convert_to_string_ex (map);
+			optstr = Z_STRVAL_PP (map);
+			cstrcpy (rqEntry->map, optstr, MAXSTRING);
+			break;
+		*/
+		case 4:
+			if ( zend_get_parameters_ex(4, &user, &pass, &domain, &map) == FAILURE ) {
+				efree (rqEntry);
+				WRONG_PARAM_COUNT;
+			}
+
+			convert_to_string_ex (domain);
+			optstr = Z_STRVAL_PP (domain);
+			cstrcpy (rqEntry->domain, optstr, MAXSTRING);
+
+			convert_to_string_ex (map);
+			optstr = Z_STRVAL_PP (map);
+			cstrcpy (rqEntry->map, optstr, MAXSTRING);
+			break;
+		case 3:
+			if ( zend_get_parameters_ex(3, &user, &pass, &domain) == FAILURE ) {
+				efree (rqEntry);
+				WRONG_PARAM_COUNT;
+			}
+
+			convert_to_string_ex (map);
+			optstr = Z_STRVAL_PP (map);
+			cstrcpy (rqEntry->map, optstr, MAXSTRING);
+			break;
+		case 2:
+			if ( zend_get_parameters_ex(2, &user, &pass) == FAILURE ) {
+				efree (rqEntry);
+				WRONG_PARAM_COUNT;
+			}
+
+			break;
+		default:
+			efree (rqEntry);
+			WRONG_PARAM_COUNT;
 	}
 
-	cstrcpy (rqEntry->user, user, MAXUSERLEN);
-	cstrcpy (rqEntry->passwd, pass, MAXUSERLEN);
+	convert_to_string_ex (user);
+	optstr = Z_STRVAL_PP (user);
+	cstrcpy (rqEntry->user, optstr, MAXUSERLEN);
 
-	if ( domain_len )
-		cstrcpy (rqEntry->domain, domain, MAXSTRING);
-
-	if ( map_len )
-		cstrcpy (rqEntry->map, map, MAXUSERLEN);
+	convert_to_string_ex (pass);
+	optstr = Z_STRVAL_PP (pass);
+	cstrcpy (rqEntry->passwd, optstr, MAXUSERLEN);
 
 	if ( ! strlen (rqEntry->domain) ) {
 		char *domain_t;
