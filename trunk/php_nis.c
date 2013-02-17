@@ -113,7 +113,7 @@ PHP_FUNCTION(nis_version)
 }
 /* }}} */
 
-/* {{{ proto bool nis_auth (char *user, char *pass, char *domain, char *map)
+/* {{{ proto bool nis_auth (string user, string pass[, string domain[, string map]])
  *  return SUCCESS or FAILURE */
 PHP_FUNCTION(nis_auth)
 {
