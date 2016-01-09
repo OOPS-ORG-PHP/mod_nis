@@ -1,12 +1,6 @@
 PHP NIS Extension Changelog
 
-$Id$
-
-* 1.0.0
---------------------------------------------------------------------------------
-by JoungKyun Kim <http://oops.org>
-	- support only over PHP 7. For under PHP 5, use version 0.x
-
+$Id: Changelog 10 2012-11-03 15:29:15Z oops $
 
 * 0.0.2
 --------------------------------------------------------------------------------

@@ -15,7 +15,7 @@
   | Author: JoungKyun.Kim <http://www.oops.org>                          |
   +----------------------------------------------------------------------+
 
-  $Id$
+  $Id: php_nis.h 14 2012-11-12 08:52:10Z oops $
 */
 
 #ifndef PHP_NIS_H
@@ -70,7 +70,7 @@ ZEND_END_MODULE_GLOBALS(nis)
 #define NIS_G(v) (nis_globals.v)
 #endif
 
-#define BUILDNO "1.0.0"
+#define BUILDNO "0.0.2"
 
 #define phpext_nis_ptr nis_module_ptr
 
