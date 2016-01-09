@@ -33,6 +33,7 @@
 #include <unistd.h>
 #include <pwd.h>
 #include <grp.h>
+#include <crypt.h>
 
 #include "php.h"
 #include "php_ini.h"
@@ -109,7 +110,7 @@ PHP_MINFO_FUNCTION(nis)
  *  print nis extension build number */
 PHP_FUNCTION(nis_version)
 {
-	RETURN_STRING (BUILDNO, 1);
+	RETURN_STRING (BUILDNO);
 }
 /* }}} */
 
@@ -117,25 +118,21 @@ PHP_FUNCTION(nis_version)
  *  return SUCCESS or FAILURE */
 PHP_FUNCTION(nis_auth)
 {
-	char * user = NULL;
-	int    user_len;
-	char * pass = NULL;
-	int    pass_len;
-	char * domain = NULL;
-	int    domain_len;
-	char * map = NULL;
-	int    map_len;
+	zend_string * user = NULL;
+	zend_string * pass = NULL;
+	zend_string * domain = NULL;
+	zend_string * map = NULL;
 
 	nisRqEntry *rqEntry;
-	char *nispass;
-	char *crypts;
+	char *nispass = NULL;
+	char *crypts = NULL;
 
-	if ( zend_parse_parameters (ZEND_NUM_ARGS () TSRMLS_CC, "ss|ss", &user, &user_len, &pass, &pass_len, &domain, &domain_len, &map, &map_len) == FAILURE ) {
+	if ( zend_parse_parameters (ZEND_NUM_ARGS (), "SSlSS", &user, &pass, &domain, &map) == FAILURE ) {
 		efree (rqEntry);
 		return;
 	}
 
-	if ( ! user_len ) {
+	if ( ! ZSTR_LEN (user) ) {
 		php_error (E_WARNING, "1st argument is empty or missing.");
 		RETURN_FALSE;
 	}
@@ -144,14 +141,14 @@ PHP_FUNCTION(nis_auth)
 	memset (rqEntry->domain, 0, MAXSTRING);
 	memset (rqEntry->map, 0, MAXUSERLEN);
 
-	cstrcpy (rqEntry->user, user, MAXUSERLEN);
-	cstrcpy (rqEntry->passwd, pass_len ? pass : "", MAXUSERLEN);
+	cstrcpy (rqEntry->user, ZSTR_VAL (user), MAXUSERLEN);
+	cstrcpy (rqEntry->passwd, ZSTR_LEN (pass) ? ZSTR_VAL (pass) : "", MAXUSERLEN);
 
-	if ( domain_len )
-		cstrcpy (rqEntry->domain, domain, MAXSTRING);
+	if ( domain && ZVAL_LEN (domain) )
+		cstrcpy (rqEntry->domain, ZSTR_VAL (domain), MAXSTRING);
 
-	if ( map_len )
-		cstrcpy (rqEntry->map, map, MAXUSERLEN);
+	if ( map && ZVAL_LEN (map) )
+		cstrcpy (rqEntry->map, ZSTR_VAL (map), MAXUSERLEN);
 
 	if ( ! strlen (rqEntry->domain) ) {
 		char *domain_t;
@@ -177,7 +174,7 @@ PHP_FUNCTION(nis_auth)
 	}
 
 	nispass = nis_get_passwd_entry (rqEntry);
-	crypts = (char *) crypt (rqEntry->passwd, nispass);
+	crypts = crypt (rqEntry->passwd, nispass);
 
 	if ( le_nis ) {
 		php_printf ("DEBUG: NIS    => %s\n", nispass);
@@ -199,7 +196,7 @@ PHP_FUNCTION(nis_auth)
  */
 PHP_FUNCTION(nis_error)
 {
-	RETURN_STRING (niserr, 1);
+	RETURN_STRING (niserr);
 }
 
 /* }}} */

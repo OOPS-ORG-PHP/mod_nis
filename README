@@ -3,6 +3,11 @@ mod_nis php extension
 작성: 김정균 <http://oops.org>
 $Id$
 
+* 경고
+1.0.x 부터는 PHP 7 이상만을 지원한다. PHP 7 미만에서는 0.x 버전을 사용
+해야 한다. (기능적 차이는 없다.)
+
+
 * 개요
 
 mod_nis php 확장은 nis entry 를 이용하여 인증을 하기 위한 모듈이다.
