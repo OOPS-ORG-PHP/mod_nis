@@ -4,6 +4,8 @@ $Id$
 
 * 1.0.0
 --------------------------------------------------------------------------------
+by JoungKyun Kim <http://oops.org>
+	- support only over PHP 7. For under PHP 5, use version 0.x
 
 
 * 0.0.2
