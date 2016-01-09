@@ -1,4 +1,4 @@
-dnl $Id$
+dnl $Id: config.m4 8 2012-02-27 19:13:14Z oops $
 dnl config.m4 for extension nis
 
 dnl Comments in this file start with the string 'dnl'.

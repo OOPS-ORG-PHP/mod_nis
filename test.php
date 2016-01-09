@@ -1,6 +1,6 @@
 #!/usr/bin/php
 <?
-# $Id$
+# $Id: test.php 7 2011-05-01 15:54:38Z oops $
 
 if ( ! extension_loaded ('nis') )
 	dl ('nis.so');

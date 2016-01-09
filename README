@@ -1,7 +1,7 @@
 mod_nis php extension
 
 작성: 김정균 <http://oops.org>
-$Id$
+$Id: README 19 2016-01-09 17:10:54Z oops $
 
 * 경고
 1.0.x 부터는 PHP 7 이상만을 지원한다. PHP 7 미만에서는 0.x 버전을 사용
