@@ -1,7 +1,5 @@
 /*
   +----------------------------------------------------------------------+
-  | PHP Version 5                                                        |
-  +----------------------------------------------------------------------+
   | Copyright (c) 1997-2006 The PHP Group                                |
   +----------------------------------------------------------------------+
   | This source file is subject to version 3.0 of the PHP license,       |
@@ -12,10 +10,8 @@
   | obtain it through the world-wide-web, please send a note to          |
   | license@php.net so we can mail you a copy immediately.               |
   +----------------------------------------------------------------------+
-  | Author: JoungKyun.Kim <http://www.oops.org>                          |
+  | Author: JoungKyun.Kim <http://oops.org>                              |
   +----------------------------------------------------------------------+
-
-  $Id$
 */
 
 #ifndef PHP_NIS_H
@@ -70,7 +66,7 @@ ZEND_END_MODULE_GLOBALS(nis)
 #define NIS_G(v) (nis_globals.v)
 #endif
 
-#define BUILDNO "1.0.0"
+#define BUILDNO "1.0.1"
 
 #define phpext_nis_ptr nis_module_ptr
 

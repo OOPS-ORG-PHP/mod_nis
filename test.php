@@ -1,6 +1,5 @@
 #!/usr/bin/php
-<?
-# $Id$
+<?php
 
 if ( ! extension_loaded ('nis') )
 	dl ('nis.so');
