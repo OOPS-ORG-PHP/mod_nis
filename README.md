@@ -8,7 +8,7 @@ PHP nis extension
 
 ## 1. License
 
-Copyright (c) 2020 JoungKyun.Kim &lt;http://oops.org&gt; All rights reserved.
+Copyright 2022. JoungKyun.Kim &lt;http://oops.org&gt; All rights reserved.
 
 This program is under ***PHP License***.
 
@@ -18,7 +18,7 @@ mod_nis php 확장은 nis entry 를 이용하여 인증을 하기 위한 모듈�
 
 단 단점으로는, NIS entry 에 존재하는 리스트만 인증이 가능하다. PAM 처럼 local account 까지 처리를 해 주지는 못한다.
 
-## 3. Wanringin
+## 3. Warning
 
 * 이 확장은 매우 실험적인 버전이다. pruduct 에 적용하는 것을 권장하지 않는다.
 * 1.0.x 부터는 PHP 7 이상만을 지원한다. PHP 7 미만에서는 0.x 버전을 사용 해야 한다. (기능적 차이는 없다.)

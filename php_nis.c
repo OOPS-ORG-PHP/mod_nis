@@ -1,6 +1,6 @@
 /*
   +----------------------------------------------------------------------+
-  | Copyright (c) 1997-2006 The PHP Group                                |
+  | Copyright 2022. JoungKyun.Kim All rights reserved.                   |
   +----------------------------------------------------------------------+
   | This source file is subject to version 3.0 of the PHP license,       |
   | that is bundled with this package in the file LICENSE, and is        |
@@ -10,7 +10,7 @@
   | obtain it through the world-wide-web, please send a note to          |
   | license@php.net so we can mail you a copy immediately.               |
   +----------------------------------------------------------------------+
-  | Author: JoungKyun.Kim <http://oops.org>                              |
+  | Author: JoungKyun.Kim <hostmaster@oops.org>                          |
   +----------------------------------------------------------------------+
 */
 
